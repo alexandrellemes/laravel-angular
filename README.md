@@ -4,6 +4,7 @@ For demonstration purposes and a tutorial.
 Laravel provides the RESTful API. Angular provides the frontend and accesses the API.
 
 # Doctrine Generator.php
+
 A Doctrine Annotation generator.
 1. Sintaxe: php generator.php
 
@@ -43,6 +44,8 @@ Happy Todo-ing!
 
 ![lista-contatos-demo](http://thbastos.com/sites/default/files/aplicacao-laravel-5-angularjs-demo.jpg)
 
-#TODO
+
+##TODO
+
 1. Configure Doctrine migrations
 2. Doctrine Auth Users

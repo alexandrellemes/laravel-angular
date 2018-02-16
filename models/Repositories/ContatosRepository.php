@@ -36,7 +36,7 @@ class ContatosRepository extends EntityRepository
 
         $contatos = $this->em
             ->createQueryBuilder()
-            ->select('u.id', 'u.nome', 'u.email', 'u.posicao')
+            ->select('u.id', 'u.nome', 'u.email', 'u.telefone', 'u.posicao')
             ->from(Contatos::class, 'u')
             ->orderBy('u.nome', 'ASC')
             ->getQuery()
@@ -45,19 +45,24 @@ class ContatosRepository extends EntityRepository
 
             return $contatos;
 
-//        $arrayContatos = [];
-//
-//        /* @var \Models\Entities\Contatos $contato */
-//        foreach ($contatos as $contato) {
-//            $arrayContatos[] = [
-//                'id' => $contato->getId(),
-//                'nome' => $contato->getNome(),
-//                'email' => $contato->getEmail(),
-//                'posicao' => $contato->getPosicao(),
-//            ];
-//        }
-//dd();
-//        return $arrayContatos;
-
     }
+
+    /**
+     * Return of contatos by Id.
+     * @param $id
+     * @return array
+     */
+    public function findById($id)
+    {
+        $contato = $this->em
+            ->createQueryBuilder()
+            ->select('u.id', 'u.nome', 'u.email', 'u.telefone', 'u.posicao')
+            ->from(Contatos::class, 'u')
+            ->where('u.id = ' . $id)
+            ->getQuery()
+            ->getResult();
+        ;
+        return $contato[0];
+    }
+
 }

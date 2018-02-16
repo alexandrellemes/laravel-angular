@@ -51,20 +51,19 @@ class Contatos extends Controller
      * @return Response
      */
     public function store(Request $request) {
-        $post = new Contato();
+        $contato = new Contato();
 
 
-        $post->setNome($request->input('nome'));
-        $post->setEmail($request->input('email'));
-        $post->setTelefone($request->input('telefone'));
-        $post->setPosicao($request->input('posicao'));
+        $contato->setNome($request->input('nome'));
+        $contato->setEmail($request->input('email'));
+        $contato->setTelefone($request->input('telefone'));
+        $contato->setPosicao($request->input('posicao'));
 
-        $this->entityManager->persist($post);
+        $this->entityManager->persist($contato);
         $this->entityManager->flush();
 
-        return 'Contato criado com sucesso com o id ' . $post->getId();
+        return 'Contato criado com sucesso com o id ' . $contato->getId();
     }
-
 
     /**
      * Exibir um registo expecífico.
@@ -73,7 +72,10 @@ class Contatos extends Controller
      * @return Response
      */
     public function show($id) {
-        return $this->contatoRepository->find($id); // Contato::find($id);
+//         return \App\Contato::find($id);
+//        return $this->entityManager->find(\Models\Entities\Contatos::class, $id);
+        return $this->contatoRepository->findById($id);
+
     }
 
 
@@ -85,17 +87,20 @@ class Contatos extends Controller
      * @return Response
      */
     public function update(Request $request, $id) {
-        $contato = Contato::find($id);
+//        $contato = Contato::find($id);
+//        $contato = $this->contatoRepository->findById($id);
+        $contato = $this->entityManager->find(\Models\Entities\Contatos::class, $id);
+        $contato->setNome($request->input('nome'));
+        $contato->setEmail($request->input('email'));
+        $contato->setTelefone($request->input('telefone'));
+        $contato->setPosicao($request->input('posicao'));
 
+//        $contato->save();
 
-        $contato->nome = $request->input('nome');
-        $contato->email = $request->input('email');
-        $contato->telefone = $request->input('telefone');
-        $contato->posicao = $request->input('posicao');
-        $contato->save();
+        $this->entityManager->persist($contato);
+        $this->entityManager->flush();
 
-
-        return "Usuário #" . $contato->id . " editado com sucesso.";
+        return "Usuário #" . $contato->getId() . " editado com sucesso.";
     }
 
 
@@ -107,9 +112,12 @@ class Contatos extends Controller
      */
     public function destroy(Request $request, $id) {
 
-        $contato = Contato::find($id);
-        $contato->delete();
+//        $contato = Contato::find($id);
+//        $contato->delete();
 
+        $contato = $this->entityManager->find(\Models\Entities\Contatos::class, $id);
+        $this->entityManager->remove($contato);
+        $this->entityManager->flush();
 
         return "Contato #" . $id. " excluído com sucesso.";
     }
