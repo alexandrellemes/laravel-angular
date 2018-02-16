@@ -28,3 +28,7 @@ Route::get('/api/v1/contatos/{id?}', 'Contatos@index');
 Route::post('/api/v1/contatos', 'Contatos@store');
 Route::post('/api/v1/contatos/{id}', 'Contatos@update');
 Route::delete('/api/v1/contatos/{id}', 'Contatos@destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
