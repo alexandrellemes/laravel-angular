@@ -5,7 +5,7 @@ Laravel provides the RESTful API. Angular provides the frontend and accesses the
 
 # Doctrine Generator.php
 A Doctrine Annotation generator.
-Sintaxe: php generator.php
+1. Sintaxe: php generator.php
 
 ## Requirements
 
@@ -20,12 +20,14 @@ Sintaxe: php generator.php
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/ThBastos/laravel-angular.git project-name`
-2. `cd projectname`
+1. Clone the repository: `git clone https://github.com/alexandrellemes/laravel-angular.git project-name`
+2. `cd project-name`
 3. `composer install`
-4. Create a database and inform .env
+4. Create a database and inform .env (copy a .env.example to .env file)
 5. `php artisan migrate --seed` to create and populate tables
 6. `php artisan serve` to start the app on http://localhost:8000/
+7. Or run a script `./otimize.sh`
+8. Run application in your browser.
 
 ## Tutorial Series (PT-BR)
 
@@ -40,3 +42,7 @@ Tutorial topics
 Happy Todo-ing!
 
 ![lista-contatos-demo](http://thbastos.com/sites/default/files/aplicacao-laravel-5-angularjs-demo.jpg)
+
+#TODO
+1. Configure Doctrine migrations
+2. Doctrine Auth Users
